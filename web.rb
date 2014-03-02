@@ -14,7 +14,7 @@ get "/" do
 			if session[:fname2] and File.exist?(session[:fname]) and File.exist?(session[:fname2])
 				@package = Setup.new.parse(session[:fname],session[:fname2],session.has_key?(:gender),session.has_key?(:good_ratio),params[:min],params[:max])
 				File.delete("uploads/#{session[:fname2]}")
-			else and File.exist?(session[:fname])
+			elsif File.exist?(session[:fname])
 				@package = Setup.new.parse(session[:fname],nil,session.has_key?(:gender),session.has_key?(:good_ratio),params[:min],params[:max])
 			end
 			File.delete("uploads/#{session[:fname]}")
