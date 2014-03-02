@@ -19,8 +19,8 @@ get "/" do
 				@package = Setup.new.parse(session[:fname],nil,session.has_key?(:gender),session.has_key?(:good_ratio),params[:min],params[:max])
 				File.delete("uploads/#{session[:fname]}")
 			end
-			
 		end
+		session[:do] = nil
 	end
 	
     erb :upload
