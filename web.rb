@@ -11,10 +11,10 @@ get "/" do
 	noSolutions = false
 	if session[:do]
 		if not flash[:notice]
-			if session[:fname2] and File.exist?(session[:fname]) and File.exist?(session[:fname2])
+			if session[:fname2] and File.exist?("uploads/#{session[:fname]}") and File.exist?("uploads/#{session[:fname2]}")
 				@package = Setup.new.parse(session[:fname],session[:fname2],session.has_key?(:gender),session.has_key?(:good_ratio),params[:min],params[:max])
 				File.delete("uploads/#{session[:fname2]}")
-			elsif File.exist?(session[:fname])
+			elsif File.exist?("uploads/#{session[:fname]}")
 				@package = Setup.new.parse(session[:fname],nil,session.has_key?(:gender),session.has_key?(:good_ratio),params[:min],params[:max])
 			end
 			File.delete("uploads/#{session[:fname]}")
