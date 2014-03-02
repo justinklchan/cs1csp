@@ -1,0 +1,88 @@
+<html>
+		<head>
+			<title>Dartmouth CS Section Assignment</title>
+		</head>
+	<body>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<h1>Dartmouth CS Section Assignment</h1>
+		<h2>Constraints/Features</h2>
+		<ul>
+			<li> Section leaders each have their own section </li>
+			<li> All students are in a section with a section leader </li>
+			<li> Section sizes will be relatively equal </li>
+			<li> Sections will either be gender uniform, or have an around equal male-female ratio </li>
+			<li> Students or section leaders can indicate preferred times (not implemented) </li>
+			<li> Two people can request to be in separate sections </li>
+		</ul>
+		Upload a text file with the following format per line:
+		<ul>
+		<li>(*)name,m/f,3,4,5;6,7</li>
+		</ul>
+		A * is prepended before the names of section leaders. m/f indicates male or female gender. Times someone is sure he/she can make are before the semicolon, times he/she may be able to make is after the semicolon.
+		Here are examples of input formats
+		<ul>
+			<li>*Alice,f,3,4,5;</li>
+			<li>Bob,m,1,2;6,7</li>
+		</ul>
+		Here are some test cases: <br/>
+		[<a href="case3.txt">test case</a>,<a href="restriction1.txt">restrictions</a>],
+		[<a href="case2.txt">large case</a>],[<a href="case1.txt">gender constraint case</a>],[<a href="badcase.txt">bad case</a>]</br><br/>
+
+A second file can be uploaded restricting pairs of people from being in the same section as each other.
+		<div class = "error">
+		
+		</div>
+		<div class="myform">
+		<form method="post", enctype="multipart/form-data">
+			Gender ratio 
+			<input type="checkbox" name="gender"> <br/>
+			Equally-sized 
+			<input type="checkbox" name="good_ratio"> <br/>
+			Min<input type="textbox" name="min"> 
+			Max<input type="textbox" name="max"> <br/>
+			Main file
+			<input type="file" name="myfile"><br/>
+			Custom restrictions
+			<input type="file" name="myfile2">
+			<br/>
+			<input type="submit"value="Upload">
+		</form>
+
+		<div class="error">
+		<% if not @package and session[:do]%>
+		<% session.clear %>
+		No solutions
+		<% end %>
+		<% if flash[:notice]%>
+			<%= flash[:notice]%>
+		<% end %>
+		</div>
+
+		<% if @package %>
+			<% for assignment in @package%>
+				<% for time in assignment%>
+					<%= time[0] %>
+					<% for i in 1...time.size %>
+						<%= time[i]%>,
+					<% end %>
+					<br/>
+				<% end %>
+				<br/>
+			<% end %>
+		<% end %>
+	</div>
+		<b>Technical Nodes:</b>
+		<ul>
+			<li>Timeout of 10 seconds if search takes too long</li>
+			<li>Can work on foreseeably large cases (there is a test case of ~100 students)</li>
+			<li>Some constraints are too tight, e.g. ensuring equal sizes for sections, so min/max section sizes allowed</li>
+		</ul>
+		<b>Caveats:</b>
+		<ul>
+			<li>The search is done with regular CSP, no enhancements, no min-conflicts used, not optimal</li>
+			<li>No option for multiple sections to be held at the same time (important practical concern) </li>
+			<li>Maybe times are weighed equally as confirmed times. Although use a basic search method, I could've enumerated a number of solutions till a time-out, and picked the best one, but I decided against having the user wait for a long period of time.</li>
+			<li>If this were to actually be used it would be best if it were used to primarily partition students, and then tweaked manually</li>
+		</ul>
+	</body>
+</html>

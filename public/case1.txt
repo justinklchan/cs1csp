@@ -1,0 +1,14 @@
+*Alice1,f,3,4;
+*Alice2,f,3,4;
+Caroline1,f,3,4;
+Caroline2,f,3,4;
+Caroline3,f,3,4;
+Caroline4,f,3,4;
+Caroline5,f,3,4;
+Caroline6,f,3,4;
+Bob1,m,3,4;
+Bob2,m,3,4;
+Bob3,m,3,4;
+Bob4,m,3,4;
+Bob5,m,3,4;
+Bob6,m,3,4;
