@@ -50,8 +50,8 @@ A second file can be uploaded restricting pairs of people from being in the same
 
 		<div class="error">
 		<% if not @package and session[:do]%>
-		<% session.clear %>
-		No solutions
+			<% session.clear %>
+			No solutions
 		<% end %>
 		<% if flash[:notice]%>
 			<%= flash[:notice]%>
